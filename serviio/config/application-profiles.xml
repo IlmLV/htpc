@@ -1,0 +1,733 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Profiles version="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.serviio.org/xsd/profiles/v/1.10/Profiles.xsd">
+		
+	<Profile id="flv_player" name="Flash player" extendsProfileId="1" alwaysEnableTranscoding="true" selectable="false">
+		<H264LevelCheck>FILE_ATTRIBUTES</H264LevelCheck>
+		<Transcoding>
+			<Video targetContainer="flv">
+				<!-- remuxing back to FLV to enable seeking on flv files that would normally play natively -->
+				<Matches container="flv" />
+			</Video>
+			<Video targetContainer="flv" targetACodec="mp3"  forceStereo="true" aSamplerate="44100">
+				<Matches container="matroska" vCodec="h264" squarePixels="true" />
+				<Matches container="mp4" vCodec="h264" squarePixels="true"/>
+				<Matches container="avi" vCodec="h264" squarePixels="true"/>
+				<Matches container="mpegts" vCodec="h264" squarePixels="true"/>
+				<Matches container="3gp" vCodec="h264" squarePixels="true"/>	
+				<Matches container="*" vCodec="h264" aCodec="speex" squarePixels="true"/>								
+			</Video>
+			<Video targetContainer="flv" targetVCodec="flv" targetACodec="mp3" forceStereo="true" aSamplerate="44100">
+				<Matches container="matroska" />
+				<Matches container="mp4" />
+				<Matches container="avi" />
+				<Matches container="mpegts" />
+				<Matches container="3gp" />
+				<Matches container="asf" />
+				<Matches container="mpeg" />
+				<Matches container="mpegts" />
+				<Matches container="ogg" />
+				<Matches container="wtv" />
+				<Matches container="rm" />
+				<Matches container="flv" aCodec="speex" />
+			</Video>
+			<Audio targetContainer="mp3">
+				<Matches container="mp3" codec="mp2" />
+				<Matches container="mp4" />
+				<Matches container="flac" />
+				<Matches container="ogg" />
+				<Matches container="lpcm" />
+				<Matches container="adts" />
+				<Matches container="asf" />
+				<Matches container="wv" />
+                <Matches container="mpc" />
+           		<Matches container="ape" />
+           		<Matches container="dsf" />
+           		<Matches container="wav" />
+			</Audio>
+		</Transcoding>
+		<OnlineTranscoding>
+			<Video targetContainer="flv" targetACodec="mp3" forceStereo="true" aSamplerate="44100">		
+				<Matches container="flv" squarePixels="true"/> <!-- vp6, flv or h264 -->
+				<Matches container="applehttp" vCodec="h264" squarePixels="true"/>
+			</Video>
+			<Video targetContainer="flv" targetVCodec="flv" targetACodec="mp3" forceStereo="true" aSamplerate="44100">			
+				<Matches container="rtp"/>
+				<Matches container="rtsp"/>
+				<Matches container="applehttp"/>
+				<Matches container="asf"/>
+				<Matches container="flv"/>
+				<Matches container="mjpeg"/>
+			</Video>
+		</OnlineTranscoding>
+		<GenericTranscoding>
+			<Video targetContainer="flv" targetVCodec="flv" targetACodec="mp3" forceStereo="true" aSamplerate="44100" />
+		</GenericTranscoding>
+		<AlternativeQualities>
+			<Quality type="MEDIUM">
+				<Transcoding>
+					<Video targetContainer="flv" targetVCodec="flv" targetACodec="mp3" forceStereo="true" aSamplerate="44100" maxVBitrate="1000" maxWidth="854" maxHeight="480">
+						<Matches container="*" />
+					</Video>
+				</Transcoding>
+				<OnlineTranscoding>
+					<Video targetContainer="flv" targetVCodec="flv" targetACodec="mp3" forceStereo="true" aSamplerate="44100" maxVBitrate="1000" maxWidth="854" maxHeight="480">
+						<Matches container="*" />
+					</Video>
+				</OnlineTranscoding>
+				<GenericTranscoding>
+					<Video targetContainer="flv" targetVCodec="flv" targetACodec="mp3" forceStereo="true" aSamplerate="44100"  maxVBitrate="1000" maxWidth="854" maxHeight="480" />
+				</GenericTranscoding>
+			</Quality>
+			<Quality type="LOW">
+				<Transcoding>
+					<Video targetContainer="flv" targetVCodec="flv" targetACodec="mp3" forceStereo="true" aSamplerate="22050" maxVBitrate="500" maxWidth="356" maxHeight="200">
+						<Matches container="*" />
+					</Video>
+				</Transcoding>
+				<OnlineTranscoding>
+					<Video targetContainer="flv" targetVCodec="flv" targetACodec="mp3" forceStereo="true" aSamplerate="44100" maxVBitrate="500" maxWidth="356" maxHeight="200">
+						<Matches container="*" />
+					</Video>
+				</OnlineTranscoding>
+				<GenericTranscoding>
+					<Video targetContainer="flv" targetVCodec="flv" targetACodec="mp3" forceStereo="true" aSamplerate="44100"  maxVBitrate="500" maxWidth="356" maxHeight="200" />
+				</GenericTranscoding>
+			</Quality>
+		</AlternativeQualities>				
+		<Subtitles>
+			<SoftSubs mime-type="text/srt" type="srt" character-encoding="utf-8" />
+			<HardSubs>
+				<BitmapBased supported="true"/>
+				<TextBased supported="false" />
+			</HardSubs>
+		</Subtitles>	
+		<ThumbnailsResolution>HD</ThumbnailsResolution>
+		<AutomaticImageRotation>true</AutomaticImageRotation>
+		<MultipleAudioTrackAware>false</MultipleAudioTrackAware>
+	</Profile>
+	
+	<Profile id="html5" name="HTML5" extendsProfileId="1" alwaysEnableTranscoding="true" selectable="false">
+		<MediaFormatProfiles>
+			<MediaFormatProfile mime-type="application/x-mpegurl">HLS</MediaFormatProfile>
+		</MediaFormatProfiles>
+		<Transcoding>
+			<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceStereo="true">
+				<Matches container="3gp" />
+				<Matches container="asf" />
+				<Matches container="avi" />
+				<Matches container="flv" />
+				<Matches container="matroska" />
+				<Matches container="mpeg" />
+				<Matches container="mpegts" />
+				<Matches container="mpegvideo" />
+				<Matches container="ogg" />
+				<Matches container="rm" />
+				<Matches container="wtv" />
+				<Matches container="mp4" vCodec="mpeg4" />
+				<Matches container="mp4" vCodec="msmpeg4" />
+				<Matches container="mp4" aCodec="ac3" />
+				<Matches container="mp4" aCodec="eac3" />
+				<Matches container="*" vCodec="h265" /> <!-- uncomment if your browser supports H265 natively -->
+			</Video>
+			<Audio targetContainer="applehttp" forceInheritance="true">
+				<Matches container="mp3" codec="mp2" />
+				<Matches container="mp4" codec="alac" />
+				<Matches container="flac" />
+				<Matches container="ogg" />
+				<Matches container="lpcm" />
+				<Matches container="adts" />
+				<Matches container="asf" />
+				<Matches container="wv" />
+                <Matches container="mpc" />
+           		<Matches container="ape" />
+           		<Matches container="dsf" />
+           		<Matches container="wav" />
+			</Audio>
+		</Transcoding>	
+		<OnlineTranscoding>
+			<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceStereo="true">
+				<Matches container="*" />
+			</Video>
+		</OnlineTranscoding>
+		<AudioTrackRemux>
+			<Video targetContainer="applehttp" targetACodec="aac" forceStereo="true">
+				<Matches container="*" vCodec="h264" />
+			</Video>
+		</AudioTrackRemux>
+		<GenericTranscoding>
+			<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceStereo="true" />
+		</GenericTranscoding>
+		<AlternativeQualities>
+			<Quality type="MEDIUM">
+				<Transcoding>
+					<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceStereo="true" maxVBitrate="1000" maxWidth="854" maxHeight="480">
+						<Matches container="*" />
+					</Video>
+				</Transcoding>
+				<OnlineTranscoding>
+					<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceStereo="true" maxVBitrate="1000" maxWidth="854" maxHeight="480">
+						<Matches container="*" />
+					</Video>
+				</OnlineTranscoding>
+				<GenericTranscoding>
+					<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceStereo="true" maxVBitrate="1000" maxWidth="854" maxHeight="480"/>
+				</GenericTranscoding>
+			</Quality>
+			<Quality type="LOW">
+				<Transcoding>
+					<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceStereo="true" aSamplerate="22050" maxVBitrate="500" maxWidth="426" maxHeight="240">
+						<Matches container="*" />
+					</Video>
+				</Transcoding>
+				<OnlineTranscoding>
+					<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceStereo="true" aSamplerate="22050" maxVBitrate="500" maxWidth="426" maxHeight="240">
+						<Matches container="*" />
+					</Video>
+				</OnlineTranscoding>
+				<GenericTranscoding>
+					<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceStereo="true" aSamplerate="22050" maxVBitrate="500" maxWidth="426" maxHeight="240"/>
+				</GenericTranscoding>
+			</Quality>
+		</AlternativeQualities>	
+		<Subtitles>
+			<SoftSubs mime-type="text/vtt" type="vtt" character-encoding="utf-8" />
+			<HardSubs>
+				<BitmapBased supported="true"/>
+				<TextBased supported="false" />
+			</HardSubs>
+		</Subtitles>	
+		<ThumbnailsResolution>HD</ThumbnailsResolution>
+		<AutomaticImageRotation>true</AutomaticImageRotation>
+		<MultipleAudioTrackAware>false</MultipleAudioTrackAware>
+	</Profile>
+
+	<Profile id="html5_mobile" name="HTML5 Mobile" extendsProfileId="html5" alwaysEnableTranscoding="true" selectable="false">
+		<Transcoding>
+			<!-- only play mp4/h264(main3 and less)/aac natively -->
+			<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceStereo="true" forceVTranscoding="true" maxWidth="1920" maxHeight="1080">
+				<Matches container="*" vCodec="h264" profile="high" levelGreaterThan="4.0"/>
+			</Video>
+			<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceStereo="true" maxWidth="1920" maxHeight="1080">
+				<Matches container="3gp" />
+				<Matches container="asf" />
+				<Matches container="avi" />
+				<Matches container="flv" />
+				<Matches container="matroska" />
+				<Matches container="mpeg" />
+				<Matches container="mpegts" />
+				<Matches container="mpegvideo" />
+				<Matches container="ogg" />
+				<Matches container="rm" />
+				<Matches container="wtv" />
+				<Matches container="mp4" vCodec="mpeg4" />
+				<Matches container="mp4" vCodec="msmpeg4" />
+				<Matches container="mp4" aCodec="ac3" />
+				<Matches container="mp4" aCodec="eac3" />
+				<Matches container="*" vCodec="h265" /> <!-- uncomment if your browser supports H265 natively -->
+				<Matches container="*" widthGreaterThan="1920" />
+			</Video>
+		</Transcoding>
+		<AlternativeQualities>
+			<Quality type="MEDIUM">
+				<Transcoding>
+					<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceStereo="true" maxVBitrate="1000" maxWidth="854" maxHeight="480">
+						<Matches container="*" />
+					</Video>
+				</Transcoding>
+				<OnlineTranscoding>
+					<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceStereo="true" maxVBitrate="1000" maxWidth="854" maxHeight="480">
+						<Matches container="*" />
+					</Video>
+				</OnlineTranscoding>
+				<GenericTranscoding>
+					<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceStereo="true" maxVBitrate="1000" maxWidth="854" maxHeight="480"/>
+				</GenericTranscoding>
+			</Quality>
+			<Quality type="LOW">
+				<Transcoding>
+					<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceStereo="true" aSamplerate="22050" maxVBitrate="500" maxWidth="426" maxHeight="240">
+						<Matches container="*" />
+					</Video>
+				</Transcoding>
+				<OnlineTranscoding>
+					<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceStereo="true" aSamplerate="22050" maxVBitrate="500" maxWidth="426" maxHeight="240">
+						<Matches container="*" />
+					</Video>
+				</OnlineTranscoding>
+				<GenericTranscoding>
+					<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceStereo="true" aSamplerate="22050" maxVBitrate="500" maxWidth="426" maxHeight="240"/>
+				</GenericTranscoding>
+			</Quality>
+		</AlternativeQualities>
+	</Profile>
+
+	<Profile id="serviigo_standard" name="ServiiGo (Standard)" extendsProfileId="1" alwaysEnableTranscoding="true" selectable="false">
+		<!-- Standard profile
+		
+		It uses high resolution thumbnails and images to make use of modern devices large heap space per app 
+		and hdpi/xhdpi/xxhdpi displays.
+		
+		It delivers videos natively under 'Original' quality, and uses mpeg2 for 'Medium' and 'Low' qualities
+		mpeg2 can only be played back in the internal player on some deviced (e.g. Nexus 7)
+		
+		It transcodes all non .mp3 audio to mp3 -->
+		<Transcoding>
+			<!-- We don't do any video transcoding under Original quality.
+			Videos have to be played in an external player, but because they are delivered natively,
+			byte based seeking is enabled -->
+			
+			<!-- Transcode non .mp3 audio for the Media Player -->
+			<Audio targetContainer="mp3" forceInheritance="true" >
+				<!-- Supported media formats are outlined http://developer.android.com/guide/appendix/media-formats.html -->
+				<!-- TODO Once ServiiGo 4.0 has been out for a while, comment out mp4 -->
+				<!-- Comment out to play m4a files natively -->
+				<Matches container="mp4" />
+				<!-- Comment out to play flac files natively -->
+				<Matches container="flac" />
+				<!-- Comment out to play ogg files natively -->
+				<Matches container="ogg" />
+				<!-- Comment out to play wma files natively (not recommended as not supported on most devices) -->
+				<Matches container="asf" />
+				<!-- Convert all of the other formats -->
+				<Matches container="lpcm" />
+				<Matches container="flv" />
+				<Matches container="rtp" />
+				<Matches container="rtsp" />
+				<Matches container="adts" />
+				<Matches container="wv" />
+				<Matches container="mpc" />
+				<Matches container="ape" />
+				<Matches container="dsf" />
+				<Matches container="wav" />
+				<Matches container="mp4" codec="alac" />
+				<Matches container="mp3" codec="mp2" />
+			</Audio>
+		</Transcoding>
+		<OnlineTranscoding>
+			<Video targetContainer="mpegts">
+				<Matches container="flv" vCodec="h264" />
+				<Matches container="mp4" />
+				<Matches container="applehttp" vCodec="h264" />
+				<Matches container="mpegts" vCodec="h264" /> <!-- jhb50 add  -->
+			</Video>
+			<Video targetContainer="mpegts" targetACodec="ac3" aBitrate="384" targetVCodec="mpeg2video" maxVBitrate="4000">
+				<Matches container="flv" />
+				<Matches container="asf" /> <!-- to support mms:// streams -->
+				<Matches container="rtp" />
+				<Matches container="rtsp" />
+				<Matches container="applehttp" />
+			</Video>
+		</OnlineTranscoding>
+		<GenericTranscoding>
+			<Video targetContainer="mpegts" targetVCodec="mpeg2video" targetACodec="mp3" forceStereo="true" />
+		</GenericTranscoding>
+		<AlternativeQualities>
+			<!-- Transcode videos to reduce bandwidth requirements.
+			Very few devices can play these back in the internal player, it currently only works on the Nexus 7.
+			All other devices must play them back in an external player, but that means no seeking. -->
+			<Quality type="MEDIUM">
+				<Transcoding>
+					<Video targetContainer="mpegts" targetVCodec="mpeg2video" targetACodec="mp3" forceStereo="true" aBitrate="128" maxVBitrate="1000" maxWidth="854" maxHeight="480">
+						<Matches container="*" />
+					</Video>
+				</Transcoding>
+				<GenericTranscoding>
+					<Video targetContainer="mpegts" targetVCodec="mpeg2video" targetACodec="mp3" forceStereo="true" aBitrate="128" maxVBitrate="1000" maxWidth="854" maxHeight="480" />
+				</GenericTranscoding>
+			</Quality>
+			<Quality type="LOW">
+				<Transcoding>
+					<Video targetContainer="mpegts" targetVCodec="mpeg2video" targetACodec="mp3" forceStereo="true" aSamplerate="22050" aBitrate="128" maxVBitrate="500" maxWidth="426" maxHeight="240">
+						<Matches container="*" />
+					</Video>
+				</Transcoding>
+				<GenericTranscoding>
+					<Video targetContainer="mpegts" targetVCodec="mpeg2video" targetACodec="mp3" forceStereo="true" aSamplerate="22050" aBitrate="128" maxVBitrate="500" maxWidth="426" maxHeight="240" />
+				</GenericTranscoding>
+			</Quality>
+		</AlternativeQualities>
+		<Subtitles>
+			<SoftSubs mime-type="text/srt" type="srt" character-encoding="utf-8" />
+			<HardSubs>
+				<BitmapBased supported="true"/>
+				<TextBased supported="false" />
+			</HardSubs>
+		</Subtitles>
+		<AllowedImageResolutions large="4096x4096" medium="1920x1920" small="1280x1280" />
+		<ThumbnailsResolution>HD</ThumbnailsResolution>
+	</Profile>
+
+	<Profile id="serviigo" name="ServiiGo (Legacy Devices)" extendsProfileId="serviigo_standard" alwaysEnableTranscoding="true" selectable="false">
+		<!-- Profile for legacy devices (< Android 3.2)
+		
+		Named so that it is used by older versions of ServiiGo that do not know about the new profiles
+		
+		It uses low resolution thumbnails and images to keep memory usage down as these older devices that have
+		small amounts of heap per app. They also tend to have ldpi/mdpi displays, so there is little point
+		in loading high resolution images.
+		
+		It delivers videos natively under 'Original' quality, and uses mpeg2 for 'Medium' and 'Low' qualities
+		
+		It transcodes all non .mp3 audio to mp3 -->
+		
+		<!-- Original quality rules are inherited from the standard profile -->
+		<!-- We have to duplicate the alternative quality rules -->
+		<AlternativeQualities>
+			<!-- Transcode videos to reduce bandwidth requirements -->
+			<Quality type="MEDIUM">
+				<Transcoding>
+					<Video targetContainer="mpegts" targetVCodec="mpeg2video" targetACodec="mp3" forceStereo="true" aBitrate="128" maxVBitrate="1000" maxWidth="854" maxHeight="480">
+						<Matches container="*" />
+					</Video>
+				</Transcoding>
+				<GenericTranscoding>
+					<Video targetContainer="mpegts" targetVCodec="mpeg2video" targetACodec="mp3" forceStereo="true" aBitrate="128" maxVBitrate="1000" maxWidth="854" maxHeight="480" />
+				</GenericTranscoding>
+			</Quality>
+			<Quality type="LOW">
+				<Transcoding>
+					<Video targetContainer="mpegts" targetVCodec="mpeg2video" targetACodec="mp3" forceStereo="true" aSamplerate="22050" aBitrate="128" maxVBitrate="500" maxWidth="426" maxHeight="240">
+						<Matches container="*" />
+					</Video>
+				</Transcoding>
+				<GenericTranscoding>
+					<Video targetContainer="mpegts" targetVCodec="mpeg2video" targetACodec="mp3" forceStereo="true" aSamplerate="22050" aBitrate="128" maxVBitrate="500" maxWidth="426" maxHeight="240" />
+				</GenericTranscoding>
+			</Quality>
+		</AlternativeQualities>
+		<Subtitles>
+			<SoftSubs mime-type="text/srt" type="srt" character-encoding="utf-8" />
+			<HardSubs>
+				<BitmapBased supported="true"/>
+				<TextBased supported="false" />
+			</HardSubs>
+		</Subtitles>
+		<!-- Use lower resolution images and thumbnails -->
+		<AllowedImageResolutions large="4096x4096" medium="1024x1024" small="800x800" />
+		<ThumbnailsResolution>DLNA</ThumbnailsResolution>
+	</Profile>
+
+	<Profile id="serviigo_hls" name="ServiiGo (HLS)" extendsProfileId="serviigo_standard" alwaysEnableTranscoding="true" selectable="false">
+		<!-- HLS profile
+		
+		It uses high resolution thumbnails and images to make use of modern devices large heap space per app 
+		and hdpi/xhdpi/xxhdpi displays.
+		
+		It delivers videos natively under 'Original' quality, and uses HLS for 'Medium' and 'Low' qualities
+		HLS can be played back in the internal player on all devices that are offered this profile (>=3.2)
+		However, transcoding to HLS is more CPU intensive than transcoding to mpeg2
+		
+		It transcodes all non .mp3 audio to mp3 -->
+		
+		<OnlineTranscoding>
+			<!-- h264 will be re-muxed, which isn't expensive, but other formats will be transcoded -->
+			<!-- TODO Cut down the number of formats that are transcoded -->
+			<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceStereo="true">
+				<Matches container="*" />
+			</Video>
+		</OnlineTranscoding>
+		<GenericTranscoding>
+			<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceStereo="true" />
+		</GenericTranscoding>
+		<AlternativeQualities>
+			<!-- Transcode videos to reduce bandwidth requirements.
+			These videos can can be played in the internal player on most devices that are offered this profile.
+			Seeking is done using time based seeking and start=XX url param. -->
+			<Quality type="MEDIUM">
+				<Transcoding>
+					<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceStereo="true" aBitrate="128" maxVBitrate="1000" maxWidth="854" maxHeight="480">
+						<Matches container="*" />
+					</Video>
+				</Transcoding>
+				<GenericTranscoding>
+					<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceStereo="true" aBitrate="128" maxVBitrate="1000" maxWidth="854" maxHeight="480" />
+				</GenericTranscoding>
+			</Quality>
+			<Quality type="LOW">
+				<Transcoding>
+					<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceStereo="true" aSamplerate="22050" aBitrate="128" maxVBitrate="500" maxWidth="426" maxHeight="240">
+						<Matches container="*" />
+					</Video>
+				</Transcoding>
+				<GenericTranscoding>
+					<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceStereo="true" aSamplerate="22050" aBitrate="128" maxVBitrate="500" maxWidth="426" maxHeight="240" />
+				</GenericTranscoding>
+			</Quality>
+		</AlternativeQualities>
+		<Subtitles>
+			<SoftSubs mime-type="text/srt" type="srt" character-encoding="utf-8" />
+			<HardSubs>
+				<BitmapBased supported="true"/>
+				<TextBased supported="false" />
+			</HardSubs>
+		</Subtitles>
+		<AllowedImageResolutions large="4096x4096" medium="1920x1920" small="1280x1280" />
+		<ThumbnailsResolution>HD</ThumbnailsResolution>
+	</Profile>
+
+	<Profile id="serviigo_gtv" name="ServiiGo (Google TV)" extendsProfileId="serviigo_hls" alwaysEnableTranscoding="true" selectable="false">
+		<!-- Google TV profile
+		
+		It uses high resolution thumbnails and images to make use of modern devices large heap space per app 
+		and hdpi/xhdpi/xxhdpi displays.
+		
+		It transcodes all videos to HLS for use in the internal player.
+		
+		It transcodes all non .mp3 audio to mp3 -->
+		
+		<!-- In the future we could cut down on video transcoding, but this is a start that should always work -->
+		<Transcoding>
+			<!-- h264 will be re-muxed, which isn't expensive, but other formats will be transcoded -->
+			<!-- Seeking is done using time based seeking and start=XX url param -->
+			<!-- TODO Cut down the number of formats that are transcoded -->
+			<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac">
+				<Matches container="*" />
+			</Video>
+		</Transcoding>
+		<!-- Online original quality rules are inherited from the HLS profile -->
+		<AlternativeQualities>
+			<!-- Transcode videos to reduce bandwidth requirements.
+			Seeking is done using time based seeking and start=XX url param. -->
+			<Quality type="MEDIUM">
+				<Transcoding>
+					<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceStereo="true" aBitrate="128" maxVBitrate="1200" maxWidth="854" maxHeight="480">
+						<Matches container="*" />
+					</Video>
+				</Transcoding>
+				<GenericTranscoding>
+					<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceStereo="true" aBitrate="128" maxVBitrate="1200" maxWidth="854" maxHeight="480" />
+				</GenericTranscoding>
+			</Quality>
+			<Quality type="LOW">
+				<Transcoding>
+					<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceStereo="true" aSamplerate="22050" aBitrate="128" maxVBitrate="800" maxWidth="640" maxHeight="360">
+						<Matches container="*" />
+					</Video>
+				</Transcoding>
+				<GenericTranscoding>
+					<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceStereo="true" aSamplerate="22050" aBitrate="128" maxVBitrate="800" maxWidth="640" maxHeight="360" />
+				</GenericTranscoding>
+			</Quality>
+		</AlternativeQualities>	
+		<Subtitles>
+			<SoftSubs mime-type="text/srt" type="srt" character-encoding="utf-8" />
+			<HardSubs>
+				<BitmapBased supported="true"/>
+				<TextBased supported="false" />
+			</HardSubs>
+		</Subtitles>
+		<AllowedImageResolutions large="4096x4096" medium="1920x1920" small="1280x1280" />
+		<ThumbnailsResolution>HD</ThumbnailsResolution>
+	</Profile>
+
+	<Profile id="googlecast" name="Google Cast" extendsProfileId="1" alwaysEnableTranscoding="true" selectable="false">
+		<!-- 
+		Google Cast profile that delivers H.264/MP4 files natively and uses HLS for everything else: https://developers.google.com/cast/docs/media
+		It does not take into account the low memory on certain Google Cast devices so it doesn't transcode the video stream unless it has to.
+		If the video must be transcoded, then it limits it to 720p@10Mbps in an attempt to reduce server load.
+		-->
+		<Transcoding>
+			<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceVTranscoding="true" maxWidth="1280" maxHeight="720" maxVBitrate="10000" >
+				<Matches container="*" vCodec="h264" profile="high" levelGreaterThan="5" />
+				<Matches container="*" vCodec="h264" profile="main" levelGreaterThan="5" />
+			</Video>
+			<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac">
+				<Matches container="matroska" vCodec="h264" />
+				<Matches container="mpegts" vCodec="h264" />
+				<Matches container="flv" vCodec="h264" />
+				<Matches container="3gp" vCodec="h264" />
+				<Matches container="avi" vCodec="h264" />
+			</Video>
+			<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" maxWidth="1280" maxHeight="720" maxVBitrate="10000" >
+				<Matches container="3gp" />
+				<Matches container="asf" />
+				<Matches container="avi" />
+				<Matches container="flv" />
+				<Matches container="matroska" />
+				<Matches container="mpeg" />
+				<Matches container="mpegts" />
+				<Matches container="mpegvideo" />
+				<Matches container="ogg" />
+				<Matches container="rm" />
+				<Matches container="wtv" />
+				<Matches container="mp4" vCodec="mpeg4" />
+				<Matches container="mp4" vCodec="msmpeg4" />
+				<Matches container="mp4" aCodec="ac3" />
+				<Matches container="mp4" aCodec="eac3" />
+			</Video>
+			<Audio targetContainer="mp3">
+				<Matches container="mp3" codec="mp2" />
+				<Matches container="flac" />
+				<Matches container="ogg" />
+				<Matches container="lpcm" />
+				<Matches container="adts" />
+				<Matches container="asf" />
+				<Matches container="wv" />
+				<Matches container="mpc" />
+				<Matches container="ape" />
+				<Matches container="dsf" />
+				<Matches container="wav" />
+				<Matches container="mp4" codec="alac" />
+			</Audio>
+		</Transcoding>
+		<OnlineTranscoding>
+			<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac">
+				<Matches container="*" />
+			</Video>
+		</OnlineTranscoding>
+		<AlternativeQualities>
+			<Quality type="MEDIUM">
+				<Transcoding>
+					<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceStereo="true" aBitrate="128" maxVBitrate="1200" maxWidth="854" maxHeight="480">
+						<Matches container="*" />
+					</Video>
+				</Transcoding>
+				<GenericTranscoding>
+					<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceStereo="true" aBitrate="128" maxVBitrate="1200" maxWidth="854" maxHeight="480" />
+				</GenericTranscoding>
+			</Quality>
+			<Quality type="LOW">
+				<Transcoding>
+					<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceStereo="true" aSamplerate="22050" aBitrate="128" maxVBitrate="800" maxWidth="640" maxHeight="360">
+						<Matches container="*" />
+					</Video>
+				</Transcoding>
+				<GenericTranscoding>
+					<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceStereo="true" aSamplerate="22050" aBitrate="128" maxVBitrate="800" maxWidth="640" maxHeight="360" />
+				</GenericTranscoding>
+			</Quality>
+		</AlternativeQualities>
+		<Subtitles>
+			<SoftSubs mime-type="text/srt" type="srt" character-encoding="utf-8" />
+			<HardSubs>
+				<BitmapBased supported="true"/>
+				<TextBased supported="false" />
+			</HardSubs>
+		</Subtitles>
+		<AllowedImageResolutions large="4096x4096" medium="1920x1920" small="1280x1280" />
+		<ThumbnailsResolution>HD</ThumbnailsResolution>
+	</Profile>
+
+	<Profile id="chromecast" name="Chromecast" extendsProfileId="googlecast" alwaysEnableTranscoding="true" selectable="false">
+		<!-- 
+		Chromecast specific Google Cast profile that accounts for the fact that Chromecast cannot handle much more than 7Mbps
+		except when playing back H.264 in MP4 because it only has a 30MB source buffer for the MPL library that decodes HLS.
+		-->
+		<Transcoding>
+			<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceVTranscoding="true" maxWidth="1280" maxHeight="720" maxVBitrate="7000" >
+				<Matches container="*" vCodec="h264" profile="high" levelGreaterThan="5" />
+				<Matches container="*" vCodec="h264" profile="main" levelGreaterThan="5" />
+				<Matches container="3gp" />
+				<Matches container="asf" />
+				<Matches container="avi" />
+				<Matches container="flv" />
+				<Matches container="matroska" />
+				<Matches container="mpeg" />
+				<Matches container="mpegts" />
+				<Matches container="mpegvideo" />
+				<Matches container="ogg" />
+				<Matches container="rm" />
+				<Matches container="wtv" />
+				<Matches container="mp4" vCodec="mpeg4" />
+				<Matches container="mp4" vCodec="msmpeg4" />
+				<Matches container="mp4" aCodec="ac3" />
+				<Matches container="mp4" aCodec="eac3" />
+			</Video>
+		</Transcoding>
+		<GenericTranscoding>
+			<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceVTranscoding="true" maxWidth="1280" maxHeight="720" maxVBitrate="7000" />
+		</GenericTranscoding>
+		<AlternativeQualities>
+			<Quality type="MEDIUM">
+				<Transcoding>
+					<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceStereo="true" aBitrate="128" maxVBitrate="1200" maxWidth="854" maxHeight="480">
+						<Matches container="*" />
+					</Video>
+				</Transcoding>
+				<GenericTranscoding>
+					<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceStereo="true" aBitrate="128" maxVBitrate="1200" maxWidth="854" maxHeight="480" />
+				</GenericTranscoding>
+			</Quality>
+			<Quality type="LOW">
+				<Transcoding>
+					<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceStereo="true" aSamplerate="22050" aBitrate="128" maxVBitrate="800" maxWidth="640" maxHeight="360">
+						<Matches container="*" />
+					</Video>
+				</Transcoding>
+				<GenericTranscoding>
+					<Video targetContainer="applehttp" targetVCodec="h264" targetACodec="aac" forceStereo="true" aSamplerate="22050" aBitrate="128" maxVBitrate="800" maxWidth="640" maxHeight="360" />
+				</GenericTranscoding>
+			</Quality>
+		</AlternativeQualities>	
+		<Subtitles>
+			<SoftSubs mime-type="text/srt" type="srt" character-encoding="utf-8" />
+			<HardSubs>
+				<BitmapBased supported="true"/>
+				<TextBased supported="false" />
+			</HardSubs>
+		</Subtitles>
+		<AllowedImageResolutions large="4096x4096" medium="1920x1920" small="1280x1280" />
+		<ThumbnailsResolution>HD</ThumbnailsResolution>
+	</Profile>
+
+	<Profile id="alexa" name="Alexa" extendsProfileId="1" alwaysEnableTranscoding="true" selectable="false">
+		<Transcoding>
+			<Video targetContainer="mpegts" targetVCodec="h264" targetACodec="aac" forceStereo="true" forceVTranscoding="true" maxWidth="1280" maxHeight="720">
+				<Matches container="*" widthGreaterThan="1280" heightGreaterThan="720"/>
+			</Video>
+			<Video targetContainer="mpegts" targetVCodec="h264" targetACodec="aac" forceStereo="true" maxWidth="1280" maxHeight="720">
+				<Matches container="3gp" />
+				<Matches container="asf" />
+				<Matches container="avi"/>
+				<Matches container="flv" />
+				<Matches container="applehttp" />
+				<Matches container="mp4" />
+				<Matches container="matroska" />
+				<Matches container="mpeg" />
+				<Matches container="mpegts" />
+				<Matches container="mpegvideo" />
+				<Matches container="ogg" />
+				<Matches container="rm" />
+				<Matches container="wtv" />
+				<Matches container="*" vCodec="h265" />
+			</Video>
+			<Audio targetContainer="mp3" aBitrate="384">
+				<Matches container="mp3" codec="mp2" />
+				<Matches container="mp4" codec="alac" />
+				<Matches container="flac" />
+				<Matches container="ogg" />
+				<Matches container="lpcm" />
+				<Matches container="adts" />
+				<Matches container="asf" />
+				<Matches container="wv" />
+				<Matches container="mpc" />
+				<Matches container="ape" />
+				<Matches container="dsf" />
+				<Matches container="wav" />
+			</Audio>
+		</Transcoding>
+		<OnlineTranscoding>
+			<Video targetContainer="mpegts" targetVCodec="h264" targetACodec="aac" forceStereo="true" maxWidth="1280" maxHeight="720">
+				<Matches container="*" />
+			</Video>
+		</OnlineTranscoding>
+		<AudioTrackRemux>
+			<Video targetContainer="mpegts" targetACodec="aac" forceStereo="true">
+				<Matches container="*" vCodec="h264" />
+			</Video>
+		</AudioTrackRemux>
+		<GenericTranscoding>
+			<Video targetContainer="mpegts" targetVCodec="h264" targetACodec="aac" forceStereo="true" maxWidth="1280" maxHeight="720" />
+		</GenericTranscoding>
+		<Subtitles>
+			<HardSubs>
+				<BitmapBased supported="true"/>
+				<TextBased supported="true" />
+			</HardSubs>
+		</Subtitles>
+		<ThumbnailsResolution>HD</ThumbnailsResolution>
+		<AutomaticImageRotation>true</AutomaticImageRotation>
+		<MultipleAudioTrackAware>false</MultipleAudioTrackAware>
+	</Profile>
+	
+</Profiles>
