@@ -11,7 +11,8 @@ Currently comes **preconfigured**, just follow setup guide.
 * Serviio - https://serviio.org/
 * Plex - https://www.plex.tv/
 * Filebrowser - https://github.com/filebrowser/filebrowser
-* Custom web interface for easy all service usage
+* Nginx - Custom web interface for easy all service usage
+* Watchtower - https://github.com/containrrr/watchtower
 
 ### Web interface preview:
 ![](preview.jpg)
