@@ -1,6 +1,4 @@
-# htpc
-Automated Home Theater Personal Computer
-
+# Automated and preconfigured Home Theater Personal Computer
 Currently comes preconfigured, just follow setup guide.
 
 ### Features:
