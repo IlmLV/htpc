@@ -1,0 +1,222 @@
+version: '3'
+services:
+
+  watchtower:
+    image: containrrr/watchtower:latest
+    container_name: watchtower
+    environment:
+      - WATCHTOWER_LABEL_ENABLE=true
+      - WATCHTOWER_SCHEDULE=0 0 5 * * 3
+      - WATCHTOWER_TIMEOUT=1m
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_DEBUG=true
+      - WATCHTOWER_INCLUDE_STOPPED=true
+      - WATCHTOWER_REVIVE_STOPPED=true
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+
+  bazarr:
+    image: linuxserver/bazarr:latest
+    container_name: bazarr
+    network_mode: host
+    environment:
+      - PUID=${PUID} # default user id, defined in .env
+      - PGID=${PGID} # default group id, defined in .env
+      - TZ=${TZ} # timezone, defined in .env
+      - UMASK_SET=022 #optional
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${DIR_CONFIG}/bazarr:/config # config files
+      - ${DIR_MEDIA}/Movies:/movies # movies folder
+      - ${DIR_MEDIA}/TV Shows:/tv # tv shows folder
+    ports:
+      - 6767:6767
+    restart: unless-stopped
+
+  filebrowser:
+    image: n0cloud/filebrowser-multiarch:latest
+    container_name: filebrowser
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${DIR_MEDIA}/Movies:/media/Movies # movies folder
+      - ${DIR_MEDIA}/TV Shows:/media/TV Shows # tv shows folder
+      - ${DIR_DOWNLOADS}:/media/Downloads # download folder
+      - ${DIR_CONFIG}/filebrowser/database.db:/database.db
+      - ${DIR_CONFIG}/filebrowser/filebrowser.json:/.filebrowser.json
+    ports:
+      - "5082:80"
+    restart: unless-stopped
+
+  jackett:
+    image: linuxserver/jackett:latest
+    container_name: jackett
+    network_mode: host
+    environment:
+      - PUID=${PUID} # default user id, defined in .env
+      - PGID=${PGID} # default group id, defined in .env
+      - TZ=${TZ} # timezone, defined in .env
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${DIR_DOWNLOADS}/torrentbox:/downloads # place where to put .torrent files for manual download
+      - ${DIR_CONFIG}/jackett:/config/Jackett # config files
+    ports:
+      - 9117:9117
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${DIR_CONFIG}/nginx/www:/usr/share/nginx/html
+      - ${DIR_CONFIG}/nginx/logs:/var/log/nginx
+      - ${DIR_CONFIG}/nginx/conf.d:/etc/nginx/conf.d
+      - ${DIR_CONFIG}/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ${DIR_CONFIG}/traktarr/config/traktarr.log:/media/storage/traktarr.log
+    ports:
+      - "80:80"
+    restart: unless-stopped
+
+  plex:
+    image: linuxserver/plex:latest
+    container_name: plex
+    network_mode: host
+    environment:
+      - PUID=${PUID} # default user id, defined in .env
+      - PGID=${PGID} # default group id, defined in .env
+      - TZ=${TZ} # timezone, defined in .env
+      - VERSION=docker
+      - UMASK_SET=022 #optional
+      - PLEX_CLAIM= #optional
+      - ALLOWED_NETWORKS=192.168.1.0/24,172.16.0.0/16 #IP whitelist
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${DIR_CONFIG}/plex/config:/config # plex database
+      - ${DIR_CONFIG}/plex/transcode:/transcode # temp transcoded files
+      - ${DIR_MEDIA}:/data # media library
+      - ${DIR_DOWNLOADS}:/downloads # download folder
+    ports:
+      - "32400:32400/tcp"
+      - "32400:32400/udp"
+      - "32469:32469/tcp"
+      - "32469:32469/udp"
+    #  - "5353:5353/udp" #what uses this port???
+      - "1900:1900/udp"
+    restart: unless-stopped
+
+  radarr:
+    image: linuxserver/radarr:latest
+    container_name: radarr
+    network_mode: host
+    environment:
+      - PUID=${PUID} # default user id, defined in .env
+      - PGID=${PGID} # default group id, defined in .env
+      - TZ=${TZ} # timezone, defined in .env
+      - UMASK_SET=022 #optional
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${DIR_CONFIG}/radarr:/config # config files
+      - ${DIR_MEDIA}/Movies:/movies # movies folder
+      - ${DIR_DOWNLOADS}:/downloads/complete # download folder
+    ports:
+      - 7878:7878
+    restart: unless-stopped
+
+  serviio:
+    build: 
+        context: ./serviio
+    container_name: serviio
+    environment:
+      - PUID=${PUID} # default user id, defined in .env
+      - PGID=${PGID} # default group id, defined in .env
+      - TZ=${TZ} # timezone, defined in .env
+      - SERVIIO_VERSION=2.0
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${DIR_MEDIA}:/media/serviio # media library
+      - ${DIR_DOWNLOADS}:/downloads # download folder
+      - ${DIR_CONFIG}/serviio/config:/opt/serviio/config
+      - ${DIR_CONFIG}/serviio/library:/opt/serviio/library
+      - ${DIR_CONFIG}/serviio/plugins:/opt/serviio/plugins
+      - ${DIR_CONFIG}/serviio/log:/opt/serviio/log
+      - ${DIR_CONFIG}/serviio/transcode:/transcode
+    ports:
+      - "1902:1900/udp"
+      - "8895:8895/tcp"
+      - "23423:23423/tcp"
+      - "23523:23523/tcp"
+      - "23424:23424/tcp"
+      - "23524:23524/tcp"
+    restart: unless-stopped
+
+  sonarr:
+    image: linuxserver/sonarr:latest
+    container_name: sonarr
+    network_mode: host
+    environment:
+      - PUID=${PUID} # default user id, defined in .env
+      - PGID=${PGID} # default group id, defined in .env
+      - TZ=${TZ} # timezone, defined in .env
+      - UMASK_SET=022 #optional
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${DIR_CONFIG}/sonarr:/config # config files
+      - ${DIR_MEDIA}/TV Shows:/tv # tv shows folder
+      - ${DIR_DOWNLOADS}:/downloads/complete # download folder
+    ports:
+      - 8989:8989
+    restart: unless-stopped
+
+  traktarr:
+    build:
+      context: ./traktarr
+    container_name: traktarr
+    environment:
+      - TRAKTARR_VERSION=1.2.5
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${DIR_CONFIG}/traktarr/config:/config
+    restart: unless-stopped
+
+  transmission:
+    image: linuxserver/transmission:latest
+    container_name: transmission
+    network_mode: host
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+      - TRANSMISSION_WEB_HOME=/combustion-release/ #optional
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${DIR_CONFIG}/transmission/config:/config
+      - ${DIR_DOWNLOADS}:/downloads/complete
+      - ${DIR_DOWNLOADS}:/watch
+    ports:
+      - 9091:9091
+      - 51413:51413
+      - 51413:51413/udp
+    restart: unless-stopped

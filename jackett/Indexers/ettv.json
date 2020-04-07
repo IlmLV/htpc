@@ -1,0 +1,30 @@
+[
+  {
+    "id": "sitelink",
+    "type": "inputstring",
+    "name": "Site Link",
+    "value": "https://www.ettv.to/"
+  },
+  {
+    "id": "cookieheader",
+    "type": "hiddendata",
+    "name": "CookieHeader",
+    "value": "__cfduid=d3194a681042ab15d37b995b8ce9ba3791578844184; PHPSESSID=1p2anmfccdve6g0n47uk7q6r91; pass=deleted; uid=deleted"
+  },
+  {
+    "id": "lasterror",
+    "type": "hiddendata",
+    "name": "LastError",
+    "value": null
+  },
+  {
+    "id": "downloadlink",
+    "type": "inputselect",
+    "name": "Download link",
+    "value": "magnet:",
+    "options": {
+      "https://etorrent.click/": "eTorrent.click",
+      "magnet:": "magnet"
+    }
+  }
+]

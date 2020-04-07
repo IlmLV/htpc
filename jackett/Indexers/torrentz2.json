@@ -1,0 +1,50 @@
+[
+  {
+    "id": "sitelink",
+    "type": "inputstring",
+    "name": "Site Link",
+    "value": "https://torrentz2.eu/"
+  },
+  {
+    "id": "cookieheader",
+    "type": "hiddendata",
+    "name": "CookieHeader",
+    "value": "__cfduid=d5a3e78bcc6b6f5f917a12ae3a7dcb1e91578844431; cf_clearance=e4fc5fc4c27129df9297cceae962db9151a3d0ab-1585166646-0-150"
+  },
+  {
+    "id": "lasterror",
+    "type": "hiddendata",
+    "name": "LastError",
+    "value": null
+  },
+  {
+    "id": "adddownloadlinksviaitorrents.org",
+    "type": "inputbool",
+    "name": "Add download links via itorrents.org",
+    "value": false
+  },
+  {
+    "id": "excludeadultcontentfromresults",
+    "type": "inputbool",
+    "name": "Exclude adult content from results",
+    "value": true
+  },
+  {
+    "id": "onlyincludeverifedcontentinresults",
+    "type": "inputbool",
+    "name": "Only include verifed content in results",
+    "value": false
+  },
+  {
+    "id": "sortrequestedfromsite",
+    "type": "inputselect",
+    "name": "Sort requested from site",
+    "value": "A",
+    "options": {
+      "_": "peers",
+      "N": "rating",
+      "A": "created",
+      "S": "size"
+    }
+  }
+]

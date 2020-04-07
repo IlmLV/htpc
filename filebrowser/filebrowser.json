@@ -1,0 +1,20 @@
+{
+  "port": 80,
+  "baseURL":"/filebrowser",
+  "address": "",
+  "database": "/database.db",
+  "root": "/media",
+  "noauth": true,
+  "perm": {
+    "admin": false,
+    "create": true,
+    "delete": true,
+    "download": true,
+    "execute": false,
+    "modify": true,
+    "rename": true,
+    "share": false
+  },
+  "signup": false,
+  "lockPassword": true
+}
