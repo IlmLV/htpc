@@ -1,7 +1,7 @@
-FROM linuxserver/ffmpeg:latest
+FROM linuxserver/ffmpeg
 
 RUN apt-get update && \
-    apt-get install -y openjdk-8-jdk-headless curl tar imagemagick dcraw && \
+    apt-get install -y openjdk-8-jdk-headless curl tar dcraw && \
     apt-get autoremove && \
     apt-get clean
 
