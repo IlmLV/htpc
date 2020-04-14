@@ -1,0 +1,206 @@
+[
+    {
+        "id": "pin",
+        "type": "text",
+        "label": "Authentication PIN (visit https://trakt.tv/pin/478)",
+        "default": ""
+    },
+    {
+        "id": "start_scrobble",
+        "type": "bool",
+        "label": "Scrobble",
+        "default": "true"
+    },
+    {
+        "id": "scrobble_duplication_period",
+        "type": "enum",
+        "label": "Scrobble - Ignore duplicates for",
+        "values": ["Disabled", "1 Hour", "3 Hours", "6 Hours", "12 Hours", "1 Day", "7 Days"],
+        "default": "6 Hours"
+    },
+    {
+        "id": "sync_watched",
+        "type": "enum",
+        "label": "Sync - Watched",
+        "values": ["Disabled", "Synchronize (Pull + Push)", "Pull", "Push"],
+        "default": "Synchronize (Pull + Push)"
+    },
+    {
+        "id": "sync_ratings",
+        "type": "enum",
+        "label": "Sync - Ratings",
+        "values": ["Disabled", "Synchronize (Pull + Push)", "Pull", "Push"],
+        "default": "Synchronize (Pull + Push)"
+    },
+    {
+        "id": "sync_ratings_conflict",
+        "type": "enum",
+        "label": "Sync - Ratings - Conflict resolution",
+        "values": ["latest", "trakt", "plex"],
+        "default": "latest"
+    },
+    {
+        "id": "sync_playback",
+        "type": "enum",
+        "label": "Sync - Playback Progress",
+        "values": ["Disabled", "Synchronize (Pull + Push)", "Pull", "Push"],
+        "default": "Disabled"
+    },
+    {
+        "id": "sync_collection",
+        "type": "enum",
+        "label": "Sync - Collection",
+        "values": ["Disabled", "Synchronize (Pull + Push)", "Pull", "Push"],
+        "default": "Disabled"
+    },
+    {
+        "id": "sync_clean_collection",
+        "type": "bool",
+        "label": "Sync - Clean collection",
+        "default": "false"
+    },
+    {
+        "id": "sync_liked_lists",
+        "type": "enum",
+        "label": "Sync - Liked Lists (Beta)",
+        "values": ["Disabled", "Synchronize (Pull + Push)", "Pull", "Push"],
+        "default": "Disabled"
+    },
+    {
+        "id": "sync_personal_lists",
+        "type": "enum",
+        "label": "Sync - Personal Lists (Beta)",
+        "values": ["Disabled", "Synchronize (Pull + Push)", "Pull", "Push"],
+        "default": "Disabled"
+    },
+    {
+        "id": "sync_watchlist",
+        "type": "enum",
+        "label": "Sync - Watchlist (Beta)",
+        "values": ["Disabled", "Synchronize (Pull + Push)", "Pull", "Push"],
+        "default": "Disabled"
+    },
+    {
+        "id": "sync_instant_actions",
+        "type": "bool",
+        "label": "Sync - Instant Actions",
+        "default": "true"
+    },
+    {
+        "id": "sync_run_library",
+        "type": "bool",
+        "label": "Sync - Run after library updates",
+        "default": "false"
+    },
+    {
+        "id": "sync_run_interval",
+        "type": "enum",
+        "label": "Sync - Run every",
+        "values": ["Disabled", "15 Minutes", "30 Minutes", "Hour", "3 Hours", "6 Hours", "12 Hours", "Day", "Week"],
+        "default": "Disabled"
+    },
+    {
+        "id": "sync_idle_defer",
+        "type": "bool",
+        "label": "Sync - Defer until server is idle",
+        "default": "true"
+    },
+    {
+        "id": "sync_idle_delay",
+        "type": "enum",
+        "label": "Sync - Idle delay",
+        "values": ["15 Minutes", "30 Minutes", "Hour"],
+        "default": "30 Minutes"
+    },
+    {
+        "id": "scrobble_names",
+        "type": "text",
+        "label": "Global Filter - Users (comma separated)",
+        "default": ""
+    },
+    {
+        "id": "scrobble_clients",
+        "type": "text",
+        "label": "Global Filter - Client Names (comma separated)",
+        "default": ""
+    },
+    {
+        "id": "filter_networks",
+        "type": "text",
+        "label": "Global Filter - Client IPs (comma separated)",
+        "default": "*"
+    },
+    {
+        "id": "filter_sections",
+        "type": "text",
+        "label": "Global Filter - Libraries (comma separated)",
+        "default": "*"
+    },
+    {
+        "id": "proxy_host",
+        "type": "text",
+        "label": "Proxy - Host (e.g. \"http://192.168.1.1:3128\" or \"socks5://192.168.1.1:1080\")",
+        "default": ""
+
+    },
+    {
+        "id": "proxy_username",
+        "type": "text",
+        "label": "Proxy - Username",
+        "default": ""
+    },
+    {
+        "id": "proxy_password",
+        "type": "text",
+        "label": "Proxy - Password",
+        "default": ""
+    },
+    {
+        "id": "language",
+        "type": "text",
+        "label": "Language (e.g. \"en_US\", defaults to system language)",
+        "default": ""
+    },
+    {
+        "id": "activity_mode",
+        "type": "enum",
+        "label": "Activity mode",
+        "values": ["Automatic", "Logging (Legacy)", "WebSocket (PlexPass)"],
+        "default": "Automatic"
+    },
+    {
+        "id": "matcher",
+        "type": "enum",
+        "label": "Matcher",
+        "values": ["Plex", "Plex Extended"],
+        "default": "Plex Extended"
+    },
+    {
+        "id": "level_pyemitter",
+        "type": "enum",
+        "label": "Logging - Events",
+        "values": ["INFO", "DEBUG", "TRACE", "WARNING", "ERROR"],
+        "default": "INFO"
+    },
+    {
+        "id": "level_peewee",
+        "type": "enum",
+        "label": "Logging - Database",
+        "values": ["INFO", "DEBUG"],
+        "default": "INFO"
+    },
+    {
+        "id": "level_plugin",
+        "type": "enum",
+        "label": "Logging - Plugin",
+        "values": ["INFO", "DEBUG", "TRACE", "WARNING", "ERROR"],
+        "default": "INFO"
+    },
+    {
+        "id": "level_libraries",
+        "type": "enum",
+        "label": "Logging - Libraries",
+        "values": ["INFO", "DEBUG", "TRACE", "WARNING", "ERROR"],
+        "default": "INFO"
+    }
+]
