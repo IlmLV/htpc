@@ -13,6 +13,7 @@ Currently comes **preconfigured**, just follow setup guide.
 * Filebrowser - https://github.com/filebrowser/filebrowser
 * Nginx - Custom web interface for easy all service usage
 * Watchtower - https://github.com/containrrr/watchtower
+* Plex Trakt Scrobbler - https://github.com/trakt/Plex-Trakt-Scrobbler
 
 ### Web interface preview:
 ![](preview.jpg)
