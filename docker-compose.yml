@@ -68,7 +68,7 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ${DIR_DOWNLOADS}/torrentbox:/downloads # place where to put .torrent files for manual download
+      - ${DIR_DOWNLOADS}:/downloads # place where to put .torrent files for manual download
       - ${DIR_CONFIG}/jackett:/config/Jackett # config files
     ports:
       - 9117:9117
