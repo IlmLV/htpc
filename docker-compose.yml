@@ -213,6 +213,8 @@ services:
       - PGID=${PGID}
       - TZ=${TZ}
       - TRANSMISSION_WEB_HOME=/combustion-release/ #optional
+      - USER=
+      - PASS=
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
     volumes:
