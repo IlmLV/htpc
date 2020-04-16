@@ -189,10 +189,12 @@ services:
       - 8989:8989
     restart: unless-stopped
 
+  # For authentication use: sudo docker exec -it traktarr /bin/sh
   traktarr:
     build:
       context: ./traktarr
     container_name: traktarr
+    network_mode: host
     environment:
       - TRAKTARR_VERSION=1.2.5
     labels:
