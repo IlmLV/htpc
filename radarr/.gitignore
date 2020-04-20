@@ -1,1 +1,2 @@
-/nzbdrone.db
+*
+!.gitignore
