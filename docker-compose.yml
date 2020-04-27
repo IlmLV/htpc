@@ -149,8 +149,6 @@ services:
       - PGID=${PGID} # default group id, defined in .env
       - TZ=${TZ} # timezone, defined in .env
       - SERVIIO_VERSION=2.0
-    labels:
-      - "com.centurylinklabs.watchtower.enable=true"
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ${DIR_MEDIA}:/media/serviio # media library
@@ -197,8 +195,6 @@ services:
     network_mode: host
     environment:
       - TRAKTARR_VERSION=1.2.5
-    labels:
-      - "com.centurylinklabs.watchtower.enable=true"
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ${DIR_CONFIG}/traktarr/config:/config
