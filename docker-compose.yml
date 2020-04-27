@@ -6,7 +6,7 @@ services:
     container_name: watchtower
     environment:
       - WATCHTOWER_LABEL_ENABLE=true
-      - WATCHTOWER_SCHEDULE=0 0 5 * * 3
+      - WATCHTOWER_SCHEDULE=0 0 5 * * *
       #- WATCHTOWER_SCHEDULE=0 * * * * *
       - WATCHTOWER_TIMEOUT=1m
       - WATCHTOWER_CLEANUP=true
