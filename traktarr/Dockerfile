@@ -26,4 +26,4 @@ RUN \
 WORKDIR /${APP_DIR}
 
 # Entrypoint
-CMD ["python", "traktarr.py", "run"]
+CMD ["python", "traktarr.py", "run", "--run-now"]
