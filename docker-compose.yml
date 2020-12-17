@@ -91,7 +91,7 @@ services:
     restart: unless-stopped
 
   plex:
-    image: linuxserver/plex:latest
+    image: linuxserver/plex:bionic # for compatibility with 32bit arm cpu
     container_name: plex
     network_mode: host
     environment:
