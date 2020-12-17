@@ -120,7 +120,7 @@ services:
     restart: unless-stopped
 
   radarr:
-    image: linuxserver/radarr:latest
+    image: linuxserver/radarr:version-v0.2.0.1504 #v3 un arm currently is not working
     container_name: radarr
     network_mode: host
     environment:
