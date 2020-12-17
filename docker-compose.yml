@@ -57,7 +57,7 @@ services:
     restart: unless-stopped
 
   jackett:
-    image: linuxserver/jackett:latest
+    image: linuxserver/jackett:version-v0.17.64 # for compatibility with 32bit arm cpu
     container_name: jackett
     network_mode: host
     environment:
