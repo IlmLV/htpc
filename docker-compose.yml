@@ -21,7 +21,7 @@ services:
     restart: unless-stopped
 
   bazarr:
-    image: linuxserver/bazarr:latest
+    image: linuxserver/bazarr:version-v0.9.0.7
     container_name: bazarr
     network_mode: host
     environment:
@@ -168,7 +168,7 @@ services:
     restart: unless-stopped
 
   sonarr:
-    image: linuxserver/sonarr:latest
+    image: linuxserver/sonarr:version-2.0.0.5344
     container_name: sonarr
     network_mode: host
     environment:
@@ -201,7 +201,7 @@ services:
     restart: unless-stopped
 
   transmission:
-    image: linuxserver/transmission:latest
+    image: linuxserver/transmission:version-3.00-r0
     container_name: transmission
     network_mode: host
     environment:
