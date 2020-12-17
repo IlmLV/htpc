@@ -105,14 +105,14 @@
   "radarr": {
     "api_key": "",
     "minimum_availability": "released",
-    "quality": "HD-1080p",
+    "quality": "HD-1080p (en)",
     "root_folder": "/movies/",
     "url": "http://localhost:7878/"
   },
   "sonarr": {
     "api_key": "",
     "language": "English",
-    "quality": "HD-1080p",
+    "quality": "HD-1080p (en)",
     "root_folder": "/tv/",
     "tags": {},
     "url": "http://localhost:8989/"
