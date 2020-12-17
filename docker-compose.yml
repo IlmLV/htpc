@@ -36,8 +36,8 @@ services:
       - ${DIR_CONFIG}/bazarr:/config # config files
       - ${DIR_MEDIA}/Movies:/movies # movies folder
       - ${DIR_MEDIA}/TV Shows:/tv # tv shows folder
-    ports:
-      - 6767:6767
+    #ports:
+    #  - 6767:6767
     restart: unless-stopped
 
   filebrowser:
@@ -70,8 +70,8 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - ${DIR_DOWNLOADS}:/downloads # place where to put .torrent files for manual download
       - ${DIR_CONFIG}/jackett:/config/Jackett # config files
-    ports:
-      - 9117:9117
+    #ports:
+    #  - 9117:9117
     restart: unless-stopped
 
   nginx:
@@ -110,13 +110,13 @@ services:
       - ${DIR_CONFIG}/plex/transcode:/transcode # temp transcoded files
       - ${DIR_MEDIA}:/data # media library
       - ${DIR_DOWNLOADS}:/downloads # download folder
-    ports:
-      - "32400:32400/tcp"
-      - "32400:32400/udp"
-      - "32469:32469/tcp"
-      - "32469:32469/udp"
-    #  - "5353:5353/udp" #what uses this port???
-      - "1900:1900/udp"
+    #ports:
+    #  - "32400:32400/tcp"
+    #  - "32400:32400/udp"
+    #  - "32469:32469/tcp"
+    #  - "32469:32469/udp"
+    ##  - "5353:5353/udp" #what uses this port???
+    #  - "1900:1900/udp"
     restart: unless-stopped
 
   radarr:
@@ -135,8 +135,8 @@ services:
       - ${DIR_CONFIG}/radarr:/config # config files
       - ${DIR_MEDIA}/Movies:/movies # movies folder
       - ${DIR_DOWNLOADS}:/downloads/complete # download folder
-    ports:
-      - 7878:7878
+    #ports:
+    #  - 7878:7878
     restart: unless-stopped
 
   serviio:
@@ -158,13 +158,13 @@ services:
       - ${DIR_CONFIG}/serviio/plugins:/opt/serviio/plugins
       - ${DIR_CONFIG}/serviio/log:/opt/serviio/log
       - ${DIR_CONFIG}/serviio/transcode:/transcode
-    ports:
-      - "1902:1900/udp"
-      - "8895:8895/tcp"
-      - "23423:23423/tcp"
-      - "23523:23523/tcp"
-      - "23424:23424/tcp"
-      - "23524:23524/tcp"
+    #ports:
+    #  - "1902:1900/udp"
+    #  - "8895:8895/tcp"
+    #  - "23423:23423/tcp"
+    #  - "23523:23523/tcp"
+    #  - "23424:23424/tcp"
+    #  - "23524:23524/tcp"
     restart: unless-stopped
 
   sonarr:
@@ -183,8 +183,8 @@ services:
       - ${DIR_CONFIG}/sonarr:/config # config files
       - ${DIR_MEDIA}/TV Shows:/tv # tv shows folder
       - ${DIR_DOWNLOADS}:/downloads/complete # download folder
-    ports:
-      - 8989:8989
+    #ports:
+    #  - 8989:8989
     restart: unless-stopped
 
   # For authentication use: sudo docker exec -it traktarr /bin/sh
@@ -218,8 +218,8 @@ services:
       - ${DIR_CONFIG}/transmission/config:/config
       - ${DIR_DOWNLOADS}:/downloads/complete
       - ${DIR_DOWNLOADS}:/watch
-    ports:
-      - 9091:9091
-      - 51413:51413
-      - 51413:51413/udp
+    #ports:
+    #  - 9091:9091
+    #  - 51413:51413
+    #  - 51413:51413/udp
     restart: unless-stopped
